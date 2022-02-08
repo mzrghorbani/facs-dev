@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from facs.base import facs as facs
 from facs.base import measures as measures
 from facs.readers import read_age_csv
@@ -19,20 +17,34 @@ from datetime import datetime, timedelta
 
 if __name__ == "__main__":
 
-   
-    location = sys.argv[1]
-    house_ratio = 100
-    ci_multiplier = 0.625
-    transition_scenario = "extend-lockdown"
-    transition_mode = 1
-    output_dir = "../result"
-    data_dir = "../covid_data"
-    generic_outfile = 0
-    simulation_period = 19
-    starting_infections = 500
-    start_date = "3/12/2021"
-    dbg = 0
+    # Instantiate the parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--location', action="store", default="brent")
+    parser.add_argument('--transition_scenario', action="store", default="extend-lockdown")
+    parser.add_argument('--transition_mode', action="store",
+                        type=int, default='1')
+    parser.add_argument('--ci_multiplier', action="store",
+                        type=float, default='0.625', help="Multiplier set for Case Isolation which represents the ratio of out-of-house interactions for Covid patients relative to the default interaction rate. Default value comes from Imp Report 9.")
+    parser.add_argument('--output_dir', action="store", default=".")
+    parser.add_argument('--data_dir', action="store", default="covid_data")
+    parser.add_argument('-s','--starting_infections', action="store", default="500")
+    parser.add_argument('--start_date', action="store", default="1/3/2020")
+    parser.add_argument('-q', '--quicktest', action="store_true", help="set house_ratio to 100 to do quicker (but less accurate) runs for populous regions.")
+    parser.add_argument('-g', '--generic_outfile', action="store_true", help="Write main output to out.csv instead of a scenario-specific named file.")
+    parser.add_argument('--dbg', action="store_true", help="Write additional outputs to help debugging")
+    parser.add_argument('--simulation_period', action="store",type=int, default='-1')
+    args = parser.parse_args()
+    print(args)
 
+    house_ratio = 2
+    if args.quicktest:
+      house_ratio = 100
+    location = args.location
+    ci_multiplier = float(args.ci_multiplier)
+    transition_scenario = args.transition_scenario.lower()
+    transition_mode = args.transition_mode
+    output_dir = args.output_dir
+    data_dir = args.data_dir
 
     # if simsetting.csv exists -> overwrite the simulation setting parameters
     if path.isfile('simsetting.csv'):
@@ -80,15 +92,15 @@ if __name__ == "__main__":
                                        location,
                                        transition_scenario,
                                        transition_day)
-    if generic_outfile:
+    if args.generic_outfile:
       outfile = "{}/out.csv".format(output_dir)
 
     end_time = 1100
     if transition_scenario in ["extend-lockdown","dynamic-lockdown","periodic-lockdown","uk-forecast"]:
       end_time = 1100
     
-    if simulation_period > 0:
-      end_time = simulation_period
+    if args.simulation_period > 0:
+      end_time = args.simulation_period
     
     print("Running basic Covid-19 simulation kernel.")
     print("scenario = %s" % (location))
@@ -129,8 +141,9 @@ if __name__ == "__main__":
     #                              start_date=args.start_date,
     #                              date_format="%m/%d/%Y")
 
-    if starting_infections:
-      starting_num_infections = int(starting_infections)
+    starting_num_infections = 500
+    if args.starting_infections:
+      starting_num_infections = int(args.starting_infections)
     if location == "test":
       starting_num_infections = 10
 
@@ -140,13 +153,13 @@ if __name__ == "__main__":
     print("THIS SIMULATIONS HAS {} AGENTS.".format(e.num_agents))
 
     e.time = -20
-    e.date = datetime.strptime(start_date, "%d/%m/%Y")
+    e.date = datetime.strptime(args.start_date, "%d/%m/%Y")
     e.date = e.date - timedelta(days=20)
     e.print_header(outfile)
     for i in range(0, 20):
         e.evolve(reduce_stochasticity=False)
         print(e.time)
-        if dbg:
+        if args.dbg:
             e.print_status(outfile)
         else:
             e.print_status(outfile, silent=True)
