@@ -81,7 +81,7 @@ class Needs():
       return np.array([0,5040,0,0,0,0,0])
 
 # Global storage for needs now, to keep it simple.
-needs = Needs("covid_data/needs.csv")
+needs = Needs("../covid_data/needs.csv")
 num_infections_today = 0
 num_hospitalisations_today = 0
 num_deaths_today = 0
@@ -112,25 +112,25 @@ out_files = OUTPUT_FILES()
 
 def log_infection(t, x, y, loc_type):
   global num_infections_today
-  out_inf = out_files.open("{}/covid_out_infections.csv".format(log_prefix))
+  out_inf = out_files.open("../{}/covid_out_infections.csv".format(log_prefix))
   print("{},{},{},{}".format(t, x, y, loc_type), file=out_inf, flush=True)
   num_infections_today += 1
 
 def log_hospitalisation(t, x, y, age):
   global num_hospitalisations_today
-  out_inf = out_files.open("{}/covid_out_hospitalisations.csv".format(log_prefix))
+  out_inf = out_files.open("../{}/covid_out_hospitalisations.csv".format(log_prefix))
   print("{},{},{},{}".format(t, x, y, age), file=out_inf, flush=True)
   num_hospitalisations_today += 1
 
 def log_death(t, x, y, age):
   global num_deaths_today
-  out_inf = out_files.open("{}/covid_out_deaths.csv".format(log_prefix))
+  out_inf = out_files.open("../{}/covid_out_deaths.csv".format(log_prefix))
   print("{},{},{},{}".format(t, x, y, age), file=out_inf, flush=True)
   num_deaths_today += 1
 
 def log_recovery(t, x, y, age):
   global num_recoveries_today
-  out_inf = out_files.open("{}/covid_out_recoveries.csv".format(log_prefix))
+  out_inf = out_files.open("../{}/covid_out_recoveries.csv".format(log_prefix))
   print("{},{},{},{}".format(t, x, y, age), file=out_inf, flush=True)
   num_recoveries_today += 1
 
@@ -555,7 +555,7 @@ def check_vac_eligibility(a):
 
 
 class Ecosystem:
-  def __init__(self, duration, needsfile="covid_data/needs.csv", mode="parallel"):
+  def __init__(self, duration, needsfile="../covid_data/needs.csv", mode="parallel"):
     self.locations = {}
     self.houses = []
     self.house_names = []
@@ -597,22 +597,21 @@ class Ecosystem:
     self.vac_duration = -1  # value > 0 indicates non-permanent vaccine efficacy.
 
     #Make header for infections file
-    out_inf = open("covid_out_infections.csv",'w')
+    out_inf = open("../covid_out_infections.csv",'w')
     print("#time,x,y,location_type", file=out_inf)
 
 
-    if mode == "parallel":
-      from mpi4py import MPI
+    # if mode == "parallel":
+    #   from mpi4py import MPI
 
-      self.comm = MPI.COMM_WORLD
-      self.rank = self.comm.Get_rank()
-      self.size = self.comm.Get_size()
-
-      print('Hello from process {} out of {}'.format(self.rank, self.size))
+    #   self.comm = MPI.COMM_WORLD
+    #   self.rank = self.comm.Get_rank()
+    #   self.size = self.comm.Get_size()
+    #   print('Hello from process {} out of {}'.format(self.rank, self.size))
 
 
   def init_loc_inf_minutes(self):
-    print('Hello from process {} out of {}'.format(self.rank, self.size))
+    #print('Hello from process {} out of {}'.format(self.rank, self.size))
     number_of_non_house_locations = 0
     offset = 0
     self.loc_offsets = {}
@@ -732,9 +731,9 @@ class Ecosystem:
     f = None
     read_from_file = False
     if dump_and_exit == True:
-      f = open('nearest_locations.csv', "w")
+      f = open('../nearest_locations.csv', "w")
     else:
-      loaded = self.load_nearest_from_file('nearest_locations.csv')
+      loaded = self.load_nearest_from_file('../nearest_locations.csv')
       if loaded == True:
         return
       

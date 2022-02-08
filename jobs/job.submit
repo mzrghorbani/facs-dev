@@ -1,0 +1,35 @@
+executable = dist/run2
+arguments = $(option) 
+#should_transfer_files = YES
+#when_to_transfer_output = ON_EXIT
+#transfer_input_files = $(file)
+log = log_$(ClusterId).log
+output = out_$(ClusterId)_$(ProcId).out
+error = err_$(ClusterId)_$(ProcId).err
+queue option from job_list.txt
+
+
+#requirements            = (OpSysAndVer =?= "CentOS7")
+#universe                = vanilla
+#executable              = /home/mghorbani/workspace/stamina/facs/run2.py 
+#arguments               = $(option)
+#should_transfer_files   = YES
+#when_to_transfer_output = ON_EXIT
+#transfer_input_files    = /home/mghorbani/workspace/stamina/venv/lib/python3.8/site-packages/numpy
+#log                     = log_$(ClusterId).log
+#output                  = out_$(ClusterId)_$(ProcId).out
+#error                   = err_$(ClusterId)_$(ProcId).err
+#request_cpus            = 1
+#request_disk            = 20000MB
+#request_memory          = 2000MB
+#+JobFlavour             = "tomorrow"
+#queue option from job_list.txt
+
+#espresso     = 20 minutes
+#microcentury = 1 hour
+#longlunch    = 2 hours
+#workday      = 8 hours
+#tomorrow     = 1 day
+#testmatch    = 3 days
+#nextweek     = 1 week
+
