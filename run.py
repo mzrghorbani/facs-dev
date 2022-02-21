@@ -25,6 +25,7 @@ if __name__ == "__main__":
     # transition_mode = 1
     # output_dir = "../result"
     # data_dir = "../covid_data"
+    # measures_dir = "../measures"
     # generic_outfile = 0
     # simulation_period = 19
     # starting_infections = 500
@@ -38,11 +39,12 @@ if __name__ == "__main__":
     transition_mode = int(sys.argv[5])
     output_dir = sys.argv[6]
     data_dir = sys.argv[7]
-    generic_outfile = sys.argv[8]
-    simulation_period = int(sys.argv[9])
-    starting_infections = sys.argv[10]
-    start_date = sys.argv[11]
-    dbg = sys.argv[12]
+    measures_dir = sys.argv[8]
+    generic_outfile = sys.argv[9]
+    simulation_period = int(sys.argv[10])
+    starting_infections = sys.argv[11]
+    start_date = sys.argv[12]
+    dbg = sys.argv[13]
     print("The arguments are:" , str(sys.argv))
 
 
@@ -109,6 +111,7 @@ if __name__ == "__main__":
     print("transition_day = %d" % (transition_day))
     print("end_time = %d" % (end_time))
     print("output_dir  = %s" % (output_dir))
+    print("measures_dir = %s" % (measures_dir))
     print("outfile  = %s" % (outfile))
     print("data_dir  = %s" % (data_dir))
 

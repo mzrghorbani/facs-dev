@@ -43,7 +43,7 @@ def read_vaccine_yml(e, date, ymlfile="../covid_data/vaccinations_example.yml"):
       # no_transmission: 0.6
       # TO BE IMPLEMENTED
 
-def read_lockdown_yml(e, date, ymlfile="../covid_data/measures_uk.yml"):
+def read_lockdown_yml(e, date, ymlfile="../measures/measures_brent1_uk.yml"):
   with open(ymlfile) as f:
     m = yaml.safe_load(f)
 
