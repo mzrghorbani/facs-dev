@@ -134,3 +134,4 @@ dmypy.json
 *.out
 *.swp
 result/
+covid_data/
