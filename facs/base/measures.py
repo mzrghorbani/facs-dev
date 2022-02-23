@@ -43,7 +43,7 @@ def read_vaccine_yml(e, date, ymlfile="../covid_data/vaccinations_example.yml"):
       # no_transmission: 0.6
       # TO BE IMPLEMENTED
 
-def read_lockdown_yml(e, date, ymlfile="../measures/measures_brent1_uk.yml"):
+def read_lockdown_yml(e, date, ymlfile):
   with open(ymlfile) as f:
     m = yaml.safe_load(f)
 
@@ -120,13 +120,13 @@ def update_hospital_protection_factor_uk(e, t):
     e.hospital_protection_factor = 0.08
 
 
-def uk_lockdown_existing(e, t, track_trace_limit=0.5):
+def uk_lockdown_existing(e, t, ymlfile, track_trace_limit=0.5):
   update_hospital_protection_factor_uk(e,t)
 
   e.vac_duration = 365
   e.immunity_duration = 365
 
-  read_lockdown_yml(e, e.get_date_string())
+  read_lockdown_yml(e, e.get_date_string(), ymlfile)
 
   
   # traffic multiplier = relative reduction in travel minutes^2 / relative reduction service minutes

@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # transition_mode = 1
     # output_dir = "../result"
     # data_dir = "../covid_data"
-    # measures_dir = "../measures"
+    # measures_dir = "../measures_regions"
     # generic_outfile = 0
     # simulation_period = 19
     # starting_infections = 500
@@ -169,6 +169,7 @@ if __name__ == "__main__":
 
     track_trace_limit = 0.2 + transition_mode*0.1
 
+    measures_file = "{}/measures_{}.yml".format(measures_dir, location.lower())
 
     for t in range(0, end_time):
 
@@ -201,7 +202,7 @@ if __name__ == "__main__":
         if transition_scenario in ["uk-forecast"]:
           measures.uk_lockdown_forecast(e, t, transition_mode)
         elif transition_scenario not in ["no-measures"]:
-          measures.uk_lockdown_existing(e, t, track_trace_limit=track_trace_limit)
+          measures.uk_lockdown_existing(e, t, measures_file, track_trace_limit=track_trace_limit)
 
         # Propagate the model by one time step.
         e.evolve()

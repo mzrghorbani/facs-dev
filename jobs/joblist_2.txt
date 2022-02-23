@@ -1,0 +1,1 @@
+cumbria, 100, 0.625, extend-lockdown, 1, ../result, ../covid_data, ../measures_regions, False, 400, 0, 01/03/2020, False

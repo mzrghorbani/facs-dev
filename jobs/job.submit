@@ -1,10 +1,11 @@
+# job.submit file
 universe                = vanilla
 executable              = dist/run
-arguments               = $(location) $(house_ratio) $(ci_multiplier) $(transition_scenario) $(transition_mode) $(output_dir) $(data_dir) $(generic_outfile) $(simulation_period) $(starting_infections) $(start_date) $(dbg)
+arguments               = $(location) $(house_ratio) $(ci_multiplier) $(transition_scenario) $(transition_mode) $(output_dir) $(data_dir) $(measures_dir) $(generic_outfile) $(simulation_period) $(starting_infections) $(start_date) $(dbg)
 log                     = log_$(ClusterId).log
 output                  = out_$(ClusterId)_$(ProcId).out
 error                   = err_$(ClusterId)_$(ProcId).err
-queue location,house_ratio,ci_multiplier,transition_scenario,transition_mode,output_dir,data_dir,generic_outfile,simulation_period,starting_infections,start_date,dbg from job_list.txt
+queue location,house_ratio,ci_multiplier,transition_scenario,transition_mode,output_dir,data_dir,measures_dir,generic_outfile,simulation_period,starting_infections,start_date,dbg from joblist_2.txt
 
 # Options
 #requirements            = (OpSysAndVer =?= "CentOS7")

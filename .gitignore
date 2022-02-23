@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# facs
+*.log
+*.err
+*.out
+*.swp

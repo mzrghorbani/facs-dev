@@ -1,5 +1,9 @@
 # Instructions to sent jobs to condor
 
+Prerequisite:
+
+	- binutils
+
 
 Retrive git repository by:
 
