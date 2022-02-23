@@ -133,3 +133,4 @@ dmypy.json
 *.err
 *.out
 *.swp
+result/
