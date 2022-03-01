@@ -133,5 +133,5 @@ dmypy.json
 *.err
 *.out
 *.swp
+__pycache__/
 result/
-covid_data/
