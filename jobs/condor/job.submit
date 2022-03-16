@@ -1,0 +1,47 @@
+# job.submit single-core
+#universe                = vanilla
+#executable              = dist/run
+#arguments               = $(location) $(house_ratio) $(ci_multiplier) $(transition_scenario) $(transition_mode) $(output_dir) $(data_dir) $(measures_dir) $(generic_outfile) $(simulation_period) $(starting_infections) $(start_date) $(dbg)
+#log                     = log_$(ClusterId).log
+#output                  = out_$(ClusterId)_$(ProcId).out
+#error                   = err_$(ClusterId)_$(ProcId).err
+#queue location,house_ratio,ci_multiplier,transition_scenario,transition_mode,output_dir,data_dir,measures_dir,generic_outfile,simulation_period,starting_infections,start_date,dbg from joblist_2.txt
+
+
+# job.submit multi-core
+universe                = vanilla
+executable              = /home/eepgmmg1/openmpi-4.1.2/bin/mpirun
+request_cpus            = 2
+arguments               = -np 2 run $(location) $(house_ratio) $(ci_multiplier) $(transition_scenario) $(transition_mode) $(output_dir) $(data_dir) $(measures_dir) $(generic_outfile) $(simulation_period) $(starting_infections) $(start_date) $(dbg)
+log                     = log_$(ClusterId).log
+output                  = out_$(ClusterId)_$(ProcId).out
+error                   = err_$(ClusterId)_$(ProcId).err
+should_transfer_files   = yes
+when_to_transfer_output = on_exit
+transfer_input_files    = run
+queue location,house_ratio,ci_multiplier,transition_scenario,transition_mode,output_dir,data_dir,measures_dir,generic_outfile,simulation_period,starting_infections,start_date,dbg from joblist_2.txt
+
+
+# job.submit possible arguments 
+#requirements            = (OpSysAndVer =?= "CentOS7")
+#universe                = vanilla
+#executable              = /home/mghorbani/workspace/stamina/facs/run2.py 
+#arguments               = $(option)
+#should_transfer_files   = YES
+#when_to_transfer_output = ON_EXIT
+#transfer_input_files    = $(file)
+#log                     = log_$(ClusterId).log
+#output                  = out_$(ClusterId)_$(ProcId).out
+#error                   = err_$(ClusterId)_$(ProcId).err
+#request_cpus            = 1
+#request_disk            = 20000MB
+#request_memory          = 2000MB
+#+JobFlavour             = "tomorrow"
+#queue option from job_list.txt
+#espresso     = 20 minutes
+#microcentury = 1 hour
+#longlunch    = 2 hours
+#workday      = 8 hours
+#tomorrow     = 1 day
+#testmatch    = 3 days
+#nextweek     = 1 week

@@ -49,8 +49,8 @@ if __name__ == "__main__":
 
 
     # if simsetting.csv exists -> overwrite the simulation setting parameters
-    if path.isfile('../simsetting.csv'):
-        with open('../simsetting.csv', newline='') as csvfile:
+    if path.isfile('../../simsetting.csv'):
+        with open('../../simsetting.csv', newline='') as csvfile:
             values = csv.reader(csvfile)
             for row in values:
                 if len(row) > 0:  # skip empty lines in csv

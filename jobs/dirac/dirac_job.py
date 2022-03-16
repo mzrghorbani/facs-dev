@@ -1,0 +1,8 @@
+j = Job()
+j.name = "facs_run_dirac"
+j.application = Executable()
+j.application.exe = File('run')
+j.inputfiles = [ DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/run'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/age-distr.csv'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/needs.csv'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/offices.csv'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/halton_buildings.csv'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/facs.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/measures.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/disease.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/read_building_cvs.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/read_disease_yml.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/read_cases_csv.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/read_age_csv.py'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/building_types_map.yml'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/measures_halton.yml'), DiracFile('LFN:/gridpp/user/m/maziar.ghorbani/mydata/facs/run_04032022/disease_covid19.yml') ]
+j.outputfiles = [ DiracFile('covid_out_infections.csv'), DiracFile('covid_out_recoveries.csv'), DiracFile('covid_out_deaths.csv'), DiracFile('covid_out_hospitalisations.csv'), DiracFile('halton-extend-lockdown--1.csv')]
+j.backend = Dirac()
+j.submit()

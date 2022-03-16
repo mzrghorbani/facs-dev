@@ -1,0 +1,1 @@
+halton, 100, 0.625, extend-lockdown, 1, ../../result, ../../covid_data, ../../measures_regions, False, 30, 23, 01/04/2020, False

@@ -13,7 +13,7 @@ def full_lockdown(e):
   e.add_household_isolation()
 
 
-def read_vaccine_yml(e, date, ymlfile="../covid_data/vaccinations_example.yml"):
+def read_vaccine_yml(e, date, ymlfile="../../covid_data/vaccinations_example.yml"):
   with open(ymlfile) as f:
     v = yaml.safe_load(f)
   

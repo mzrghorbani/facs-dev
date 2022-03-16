@@ -1,0 +1,8 @@
+Executable = "run";
+InputData = {"/dirac/user/a/atsareg/my_data.file"};
+StdOutput = "std.out";
+StdError = "std.err";
+OutputSandbox = {"std.out","std.err","my.copy"};
+OutputData = {"my_data.copy"};
+OutputSE = "DIRAC-USER";
+CPUTime = 10;
